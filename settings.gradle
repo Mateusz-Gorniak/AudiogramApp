@@ -1,0 +1,2 @@
+rootProject.name = "AudiogramApp"
+include ':app'
