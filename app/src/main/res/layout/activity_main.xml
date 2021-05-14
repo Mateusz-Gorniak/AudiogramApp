@@ -1,21 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:fillViewport="true"
+    android:background="@drawable/gradient_drawable">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/audiogram_logo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TESTY GITA!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp">
+
+        <ImageView
+            android:layout_width="211dp"
+            android:layout_height="237dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:foregroundGravity="center"
+            android:src="@mipmap/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/audiogram_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="133dp"
+            android:padding="20dp"
+            android:text="Audiogram"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            android:textStyle="italic|bold" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/audiogram_logo"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/calibration_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/calibration"
+            android:layout_marginHorizontal="50dp"
+            android:paddingVertical="20dp"
+            android:layout_marginTop="90dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/buttoncolor1"
+            />
+
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/startapp"
+            android:layout_marginHorizontal="50dp"
+            android:paddingVertical="20dp"
+            android:layout_marginTop="190dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/buttoncolor2"
+            android:textStyle="bold"
+            />
 
 
-        />
+    </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</ScrollView>
