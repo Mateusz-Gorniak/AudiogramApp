@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity"
     android:fillViewport="true"
-    android:background="@drawable/gradient_drawable">
+    android:background="@drawable/gradient_drawable"
+    >
 
     <LinearLayout
         android:orientation="vertical"
@@ -50,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/calibration_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,10 +61,11 @@
             android:layout_marginTop="90dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:backgroundTint="@color/buttoncolor1"
+            android:background="@drawable/btn_shape"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/start_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,8 +74,9 @@
             android:paddingVertical="20dp"
             android:layout_marginTop="190dp"
             android:textSize="20sp"
-            android:backgroundTint="@color/buttoncolor2"
+            android:background="@drawable/btn_shape2"
             android:textStyle="bold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             />
 
 

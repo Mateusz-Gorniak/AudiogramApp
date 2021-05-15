@@ -11,4 +11,8 @@
     <color name="statusbar1">#0086C3</color>
     <color name="buttoncolor1">#05AF9F</color>
     <color name="buttoncolor2">#FF5722</color>
+    <color name="blue">#076165</color>
+    <color name="red">#A50916</color>
+    <color name="green">#449C21</color>
+    <color name="yellow">#D0E320</color>
 </resources>
