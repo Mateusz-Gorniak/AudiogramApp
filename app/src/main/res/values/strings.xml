@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">AudiogramApp</string>
+    <string name="audiogram">Audiogram</string>
     <string name="calibration">Kalibracja</string>
     <string name="startapp">Start</string>
+    <string name="aboutprogram">O programie</string>
+    <string name="backtomainpage">Strona Główna</string>
+
 
 </resources>

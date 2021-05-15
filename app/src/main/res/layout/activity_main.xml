@@ -14,38 +14,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/audiogram_logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
+        <RelativeLayout
+            android:id="@+id/audiogram_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="275dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="20dp">
 
-        <ImageView
-            android:layout_width="211dp"
-            android:layout_height="237dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:foregroundGravity="center"
-            android:src="@mipmap/ic_launcher_foreground" />
+            <ImageView
+                android:layout_width="211dp"
+                android:layout_height="237dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="79dp"
+                android:layout_marginEnd="81dp"
+                android:foregroundGravity="center"
+                android:src="@mipmap/ic_launcher_foreground" />
 
-        <TextView
-            android:id="@+id/audiogram_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="133dp"
-            android:padding="20dp"
-            android:text="Audiogram"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="50sp"
-            android:textStyle="italic|bold" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/audiogram_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="162dp"
+                android:padding="20dp"
+                android:text="Audiogram"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:textStyle="italic|bold" />
+
+            <ImageView
+                android:id="@+id/show_menu"
+                android:layout_width="94dp"
+                android:layout_height="98dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="-16dp"
+                android:foregroundGravity="center"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_more_vert_24" />
+
+
+        </RelativeLayout>
     <RelativeLayout
         android:layout_below="@id/audiogram_logo"
         android:layout_gravity="center"

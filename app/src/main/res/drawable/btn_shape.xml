@@ -5,8 +5,8 @@
     <item>
         <shape android:shape="rectangle">
             <gradient android:angle="225"
-                android:startColor="@color/red"
-                android:endColor="@color/green"
+                android:startColor="@color/yellow"
+                android:endColor="@color/buttoncolor2"
                 />
             <corners android:radius="20dp" />
             <stroke android:width="4dp"/>

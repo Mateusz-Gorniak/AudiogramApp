@@ -1,38 +1,70 @@
 package pl.gorniak.audiogramapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
+import static pl.gorniak.audiogramapp.R.id.nav_about_application;
+import static pl.gorniak.audiogramapp.R.id.show_menu;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    ImageView menu_show;
+    MenuBuilder menuBuilder;
+
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.o_programie:
-                Intent info = new Intent(MainActivity.this, AboutProgramActivity.class);
-                startActivity(info);
-                return true;
 
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+        menu_show = (ImageView) findViewById(show_menu);
 
+        menuBuilder = new MenuBuilder(this);
+        MenuInflater inflater = new MenuInflater(this);
+        inflater.inflate(R.menu.menu, menuBuilder);//this will show our menu list we add
+
+
+        //Set item click listener
+        menu_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MenuPopupHelper optionMenu = new MenuPopupHelper(MainActivity.this,
+                        menuBuilder,view);
+                optionMenu.setForceShowIcon(true);
+
+                menuBuilder.setCallback(new MenuBuilder.Callback() {
+                    @SuppressLint("NonConstantResourceId")
+                    @Override
+                    public boolean onMenuItemSelected(@NonNull MenuBuilder menu, @NonNull MenuItem item) {
+                        if (item.getItemId() == nav_about_application) {
+                            Intent info = new Intent(MainActivity.this, AboutProgramActivity.class);
+                            startActivity(info);
+                            return true;
+                        }
+                        return false;
+                    }
+                    @Override
+                    public void onMenuModeChange(@NonNull MenuBuilder menu) {
+                        //empty
+                    }
+                });
+
+                optionMenu.show();
+            }
+        });
+
+    }
 }

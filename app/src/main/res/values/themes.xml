@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.AudiogramApp" parent="Theme.MaterialComponents.DayNight">
+    <style name="Theme.AudiogramApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/statusbar1</item>
         <item name="colorPrimaryVariant">@color/statusbar</item>
@@ -14,5 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
-
+    <style name="CardView2">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardBackgroundColor">@color/cardview</item>
+        <item name="cardElevation">20dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="contentPadding">10dp</item>
+    </style>
 </resources>
