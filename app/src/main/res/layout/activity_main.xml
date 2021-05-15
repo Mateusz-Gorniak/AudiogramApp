@@ -6,6 +6,7 @@
     tools:context=".MainActivity"
     android:fillViewport="true"
     android:background="@drawable/gradient_drawable"
+
     >
 
     <LinearLayout
