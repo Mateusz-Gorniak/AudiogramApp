@@ -67,4 +67,40 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    public void onCalibrationClick(View view) {
+        Intent calibrationPage = new Intent(MainActivity.this,CalibrationActivity.class);
+        startActivity(calibrationPage);
+    }
+
+    public void onStartClick(View view) {
+        Intent startPage = new Intent(MainActivity.this,ExaminationActivity.class);
+        startActivity(startPage);
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

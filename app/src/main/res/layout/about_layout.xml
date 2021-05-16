@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card1"
         style="@style/CardView2"
-        android:layout_width="424dp"
+        android:layout_width="wrap_content"
         android:layout_height="556dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-6dp">
