@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import static pl.gorniak.audiogramapp.R.id.nav_about_application;
+import static pl.gorniak.audiogramapp.R.id.nav_audiogram_graph;
 import static pl.gorniak.audiogramapp.R.id.show_menu;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onMenuItemSelected(@NonNull MenuBuilder menu, @NonNull MenuItem item) {
                         if (item.getItemId() == nav_about_application) {
                             Intent info = new Intent(MainActivity.this, AboutProgramActivity.class);
+                            startActivity(info);
+                            return true;
+                        }
+                        if (item.getItemId() == nav_audiogram_graph) {
+                            Intent info = new Intent(MainActivity.this, AudiogramGraph.class);
                             startActivity(info);
                             return true;
                         }

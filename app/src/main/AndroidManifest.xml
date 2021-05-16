@@ -9,12 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AudiogramApp">
-        <activity android:name=".AboutProgramActivity"></activity>
-        <activity android:name=".ExaminationActivity"></activity>
+        <activity android:name=".AudiogramGraph"></activity>
+        <activity android:name=".AboutProgramActivity" />
+        <activity android:name=".ExaminationActivity" />
         <activity android:name=".CalibrationActivity" />
-        <activity android:name=".MainActivity"
-
-            >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

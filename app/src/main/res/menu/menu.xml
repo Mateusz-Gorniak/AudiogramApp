@@ -6,4 +6,8 @@
         android:id="@+id/nav_about_application"
         android:title="@string/aboutprogram"
         />
+    <item
+        android:id="@+id/nav_audiogram_graph"
+        android:title="@string/audiogramgraph"
+        />
 </menu>
