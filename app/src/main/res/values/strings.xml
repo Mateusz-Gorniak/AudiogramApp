@@ -6,7 +6,12 @@
     <string name="aboutprogram">O programie</string>
     <string name="backtomainpage">Strona Główna</string>
     <string name="save">Zapisz</string>
+    <string name="hear_sound">Słyszę dźwięk</string>
     <string name="audiogramgraph">Wykres Audiogram</string>
+    <string name="about_calibration">Sygnałem kalibracyjnym jest ton 1kHz o amplitudzie zmieniającej się naprzemiennie w co
+5dB okresie co 1 s. Kalibracja poziomu głośności do poziomu głośności 0 dB polega na tym
+aby tak wyregulować poziom wzmocnienia sygnału aby słyszeć tylko ton głośniejszy. </string>
+
 
 
 </resources>

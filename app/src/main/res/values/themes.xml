@@ -21,6 +21,6 @@
         <item name="cardBackgroundColor">@color/white1</item>
         <item name="cardElevation">20dp</item>
         <item name="cardUseCompatPadding">true</item>
-        <item name="contentPadding">10dp</item>
+        <item name="contentPadding">8dp</item>
     </style>
 </resources>
