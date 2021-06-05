@@ -6,7 +6,10 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioDeviceInfo;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import static pl.gorniak.audiogramapp.R.id.nav_about_application;
 import static pl.gorniak.audiogramapp.R.id.nav_audiogram_graph;
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Intent calibrationPage = new Intent(MainActivity.this,CalibrationActivity.class);
         startActivity(calibrationPage);
     }
+
 
     public void onStartClick(View view) {
         Intent startPage = new Intent(MainActivity.this,ExaminationActivity.class);

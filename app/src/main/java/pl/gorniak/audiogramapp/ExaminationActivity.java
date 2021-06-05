@@ -11,6 +11,7 @@ public class ExaminationActivity extends AppCompatActivity {
 
     private static final int SAMPLE_RATE = 48000;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,9 @@ public class ExaminationActivity extends AppCompatActivity {
         // tablica przechowująca próbki (short zajmuje 16 bitów)
         short sample[] = new short[numSamples];
         // tworzenie próbek
+
+
+
         for (int i = 0; i < numSamples; ++i) {
             sample[i] = (short) (amplitude * Math.sin(2 * Math.PI * i / (SAMPLE_RATE / frequency)) *
                     Short.MAX_VALUE);
