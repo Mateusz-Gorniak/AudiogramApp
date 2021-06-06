@@ -8,4 +8,22 @@
     android:background="@drawable/gradient_drawable"
     >
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/hearSound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:background="@drawable/btn_shape2"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:paddingVertical="15dp"
+        android:text="Wykres"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="164dp"
+        android:onClick="gotoGraph"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
