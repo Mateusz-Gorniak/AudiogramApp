@@ -84,12 +84,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void onStartClick(View view) {
-        Intent startPage = new Intent(MainActivity.this,ExaminationActivity.class);
-        startActivity(startPage);
-    }
-
-
     @Override
     protected void onPause() {
         super.onPause();

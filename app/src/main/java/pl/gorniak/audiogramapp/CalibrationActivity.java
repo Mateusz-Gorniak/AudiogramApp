@@ -9,15 +9,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioDeviceInfo;
+import android.media.AudioFormat;
 import android.media.AudioManager;
+import android.media.AudioTrack;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.Toast;
+
+import github.nisrulz.zentone.ToneStoppedListener;
+import github.nisrulz.zentone.ZenTone;
 
 
 public class CalibrationActivity extends AppCompatActivity {
 
+    private static final int SAMPLE_RATE = 48000;
+    AudioManager audioManager;
+    Button buttonCalibration;
     private static final String TAG = "CalibrationActivity";
     private MusicIntentReceiver myReceiver;
 
@@ -26,6 +37,33 @@ public class CalibrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calibration);
         myReceiver = new MusicIntentReceiver();
+        buttonCalibration = (Button) findViewById(R.id.startButton);
+
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+
+        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+
+
+        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
+        seekBar.setMax(maxVolume);
+        seekBar.setProgress(currentVolume);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
     }
     @Override public void onResume() {
@@ -33,6 +71,31 @@ public class CalibrationActivity extends AppCompatActivity {
         registerReceiver(myReceiver, filter);
         super.onResume();
     }
+
+    public void onCalibrationClick(View view) {
+
+                // liczba próbek
+        int  duration = 1;
+        double amplitude = 1;
+        int frequency = 1000;
+        int numSamples = duration * SAMPLE_RATE;
+        // tablica przechowująca próbki (short zajmuje 16 bitów)
+        short sample[] = new short[numSamples];
+        // tworzenie próbek
+
+        for (int i = 0; i < numSamples; ++i) {
+            sample[i] = (short) (amplitude * Math.sin(2 * Math.PI * i / (SAMPLE_RATE / frequency)) *
+                    Short.MAX_VALUE);
+        }
+        AudioTrack audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,
+                SAMPLE_RATE, AudioFormat.CHANNEL_OUT_MONO,
+                AudioFormat.ENCODING_PCM_16BIT, sample.length * 2,
+                AudioTrack.MODE_STATIC);
+        audioTrack.write(sample, 0, sample.length);
+        audioTrack.play();
+
+    }
+
     private class MusicIntentReceiver extends BroadcastReceiver {
         @Override public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_HEADSET_PLUG)) {
@@ -40,9 +103,13 @@ public class CalibrationActivity extends AppCompatActivity {
                 switch (state) {
                     case 0:
                         Log.d(TAG, "Headset is unplugged");
+                        Toast.makeText(CalibrationActivity.this, "Unplugged", Toast.LENGTH_SHORT).show();
+                        buttonCalibration.setEnabled(false);
                         break;
                     case 1:
                         Log.d(TAG, "Headset is plugged");
+                        Toast.makeText(CalibrationActivity.this, "Plugged", Toast.LENGTH_SHORT).show();
+                        buttonCalibration.setEnabled(true);
                         break;
                     default:
                         Log.d(TAG, "I have no idea what the headset state is");
@@ -54,20 +121,5 @@ public class CalibrationActivity extends AppCompatActivity {
         unregisterReceiver(myReceiver);
         super.onPause();
     }
-
-//    private boolean isHeadphonesPlugged(){
-//        AudioManager audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-//        @SuppressLint("WrongConstant") AudioDeviceInfo[] audioDevices = audioManager.getDevices(AudioManager.GET_DEVICES_ALL);
-//        for(AudioDeviceInfo deviceInfo : audioDevices){
-//            if(deviceInfo.getType()==AudioDeviceInfo.TYPE_WIRED_HEADPHONES
-//                    || deviceInfo.getType()==AudioDeviceInfo.TYPE_WIRED_HEADSET){
-//                return true;
-//
-//            }
-//        }
-//
-//        return false;
-//    }
-
 
 }
