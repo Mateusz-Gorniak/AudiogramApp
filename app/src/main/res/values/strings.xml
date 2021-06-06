@@ -8,6 +8,7 @@
     <string name="save">Zapisz</string>
     <string name="headphones_in">Podłącz słuchawki</string>
     <string name="start_calibration">Kalibruj</string>
+    <string name="hear_sound">Słyszę dźwięk</string>
     <string name="audiogramgraph">Wykres Audiogram</string>
     <string name="about_calibration">Sygnałem kalibracyjnym jest ton 1kHz o amplitudzie zmieniającej się naprzemiennie w co
 5dB okresie co 1 s. </string>

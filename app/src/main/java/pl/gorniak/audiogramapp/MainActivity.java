@@ -83,7 +83,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(calibrationPage);
     }
 
-
+    public void onStartClick(View view) {
+        Intent examinationPage = new Intent(MainActivity.this,ExaminationActivity.class);
+        startActivity(examinationPage);
+    }
+    
     @Override
     protected void onPause() {
         super.onPause();
@@ -108,4 +112,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
 }
