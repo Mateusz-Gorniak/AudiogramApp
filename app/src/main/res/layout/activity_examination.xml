@@ -22,9 +22,9 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintVertical_bias="0.987"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -107,10 +107,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
+
     <TextView
         android:id="@+id/volume_text"
-        android:layout_width="98dp"
-        android:layout_height="34dp"
+        android:layout_width="119dp"
+        android:layout_height="32dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="48dp"
         android:layout_marginBottom="8dp"
@@ -124,8 +125,47 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.982"
+        app:layout_constraintVertical_bias="0.946"
         tools:ignore="MissingConstraints" />
+
+    <RadioGroup
+        android:layout_width="386dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hearSound">
+
+
+        <RadioButton
+            android:id="@+id/rbuttonleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/buttoncolor2"
+            android:buttonTint="@color/black"
+            android:padding="5dp"
+            android:layout_margin="20dp"
+            android:text="@string/leftear"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbuttonrigth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/buttoncolor2"
+            android:buttonTint="@color/black"
+            android:padding="5dp"
+            android:layout_margin="20dp"
+            android:text="@string/rightear"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/play"
@@ -137,7 +177,7 @@
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:onClick="onPlay"
         android:paddingVertical="15dp"
-        android:text="Play"
+        android:text="Odtwórz"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -152,13 +192,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="72dp"
-        android:text="Can you hear it?"
+        android:layout_marginTop="140dp"
+        android:text="Czy słyszysz dźwięk?"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hearSound"
         tools:ignore="MissingConstraints" />
@@ -173,7 +214,7 @@
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:onClick="onAnswerYes"
         android:paddingVertical="15dp"
-        android:text="Yes"
+        android:text="Tak"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -190,7 +231,7 @@
         android:background="@drawable/btn_shape2"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:onClick="onAnswerNo"
-        android:text="No"
+        android:text="Nie"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
