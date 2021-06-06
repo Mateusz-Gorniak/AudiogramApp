@@ -1,18 +1,12 @@
 package pl.gorniak.audiogramapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.media.AudioDeviceInfo;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,8 +14,12 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-import github.nisrulz.zentone.ToneStoppedListener;
-import github.nisrulz.zentone.ZenTone;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class CalibrationActivity extends AppCompatActivity {
@@ -65,39 +63,27 @@ public class CalibrationActivity extends AppCompatActivity {
             }
         });
 
+
     }
-    @Override public void onResume() {
+
+    @Override
+    public void onResume() {
         IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(myReceiver, filter);
         super.onResume();
     }
 
-    public void onCalibrationClick(View view) {
-
-                // liczba próbek
-        int  duration = 1;
-        double amplitude = 1;
-        int frequency = 1000;
-        int numSamples = duration * SAMPLE_RATE;
-        // tablica przechowująca próbki (short zajmuje 16 bitów)
-        short sample[] = new short[numSamples];
-        // tworzenie próbek
-
-        for (int i = 0; i < numSamples; ++i) {
-            sample[i] = (short) (amplitude * Math.sin(2 * Math.PI * i / (SAMPLE_RATE / frequency)) *
-                    Short.MAX_VALUE);
+    public void onCalibrationClick(View view) throws InterruptedException {
+        for (int i = 0; i<10;i++){
+        soundGenerate();
+        Thread.sleep(1_000);
         }
-        AudioTrack audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,
-                SAMPLE_RATE, AudioFormat.CHANNEL_OUT_MONO,
-                AudioFormat.ENCODING_PCM_16BIT, sample.length * 2,
-                AudioTrack.MODE_STATIC);
-        audioTrack.write(sample, 0, sample.length);
-        audioTrack.play();
 
     }
 
     private class MusicIntentReceiver extends BroadcastReceiver {
-        @Override public void onReceive(Context context, Intent intent) {
+        @Override
+        public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_HEADSET_PLUG)) {
                 int state = intent.getIntExtra("state", -1);
                 switch (state) {
@@ -117,7 +103,34 @@ public class CalibrationActivity extends AppCompatActivity {
             }
         }
     }
-    @Override public void onPause() {
+
+    public void soundGenerate() throws InterruptedException {
+
+        // liczba próbek
+        int  duration = 1;
+        float amplitude = 0.56f;
+        int frequency = 1000;
+        int numSamples = duration * SAMPLE_RATE;
+        // tablica przechowująca próbki (short zajmuje 16 bitów)
+        short sample[] = new short[numSamples];
+        // tworzenie próbek
+
+
+
+        for (int i = 0; i < numSamples; ++i) {
+            sample[i] = (short) (amplitude * Math.sin(2 * Math.PI * i / (SAMPLE_RATE / frequency)) *
+                    Short.MAX_VALUE);
+        }
+        AudioTrack audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,
+                SAMPLE_RATE, AudioFormat.CHANNEL_OUT_MONO,
+                AudioFormat.ENCODING_PCM_16BIT, sample.length * 2,
+                AudioTrack.MODE_STATIC);
+        audioTrack.write(sample, 0, sample.length);
+        audioTrack.play();
+    }
+
+    @Override
+    public void onPause() {
         unregisterReceiver(myReceiver);
         super.onPause();
     }
