@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,8 @@ public class CalibrationActivity extends AppCompatActivity {
     MediaPlayer mp;
     TextView textViewleft;
     TextView textViewrigth;
+    Button buttonCalibration;
+    Button buttonHear;
 
 
     @Override
@@ -44,6 +47,8 @@ public class CalibrationActivity extends AppCompatActivity {
 
         int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        buttonCalibration = (Button) findViewById(R.id.startButton);
+        buttonHear = (Button) findViewById(R.id.hearSound);
 
 
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
@@ -106,12 +111,14 @@ public class CalibrationActivity extends AppCompatActivity {
                     case 0:
                         Log.d(TAG, "Headset is unplugged");
                         Toast.makeText(CalibrationActivity.this, "Unplugged", Toast.LENGTH_SHORT).show();
-//                        buttonCalibration.setEnabled(false);
+                        buttonCalibration.setEnabled(false);
+                        buttonHear.setEnabled(false);
                         break;
                     case 1:
                         Log.d(TAG, "Headset is plugged");
                         Toast.makeText(CalibrationActivity.this, "Plugged", Toast.LENGTH_SHORT).show();
-//                        buttonCalibration.setEnabled(true);
+                        buttonCalibration.setEnabled(true);
+                        buttonHear.setEnabled(true);
                         break;
                     default:
                         Log.d(TAG, "I have no idea what the headset state is");
