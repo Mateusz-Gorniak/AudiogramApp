@@ -23,15 +23,15 @@ public class CalibrationActivity extends AppCompatActivity {
 
 
     AudioManager audioManager;
-    float leftVolume = 0.00316f; //-50dB
-    float rightVolume = 0.00316f;//-50dB
+    float leftVolume = 0.03f;  //wspołczynnik skali
+    float rightVolume = 0.03f; //wspołczynnik skali
     private static final String TAG = "CalibrationActivity";
     private MusicIntentReceiver myReceiver;
     MediaPlayer mp;
-    TextView textViewleft;
-    TextView textViewrigth;
     Button buttonCalibration;
-    Button buttonHear;
+    Button buttonStart;
+    Button buttonStop;
+    TextView calibraionLabel;
 
 
     @Override
@@ -42,13 +42,13 @@ public class CalibrationActivity extends AppCompatActivity {
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
 
-        textViewleft = (TextView) findViewById(R.id.leftsound);
-        textViewrigth = (TextView) findViewById(R.id.rightsound);
 
         int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-        buttonCalibration = (Button) findViewById(R.id.startButton);
-        buttonHear = (Button) findViewById(R.id.hearSound);
+        buttonCalibration = (Button) findViewById(R.id.calibrationButton);
+        buttonStart = (Button) findViewById(R.id.startButton);
+        buttonStop = (Button) findViewById(R.id.stopButton);
+        calibraionLabel = (TextView) findViewById(R.id.calibration_label);
 
 
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
@@ -85,20 +85,20 @@ public class CalibrationActivity extends AppCompatActivity {
 
         mp = MediaPlayer.create(this, R.raw.testzz);
         mp.setVolume(leftVolume,rightVolume);
-        textViewrigth.setText(toString(rightVolume));
-        textViewleft.setText(toString(leftVolume));
         mp.start();
 
     }
 
-    public void onHearClick(View view) {
+    public void onStopClick(View view) {
         mp.stop();
-        leftVolume = leftVolume*10;
-        rightVolume = rightVolume*10;
     }
 
     private String toString(float value) {
         return ""+value;
+    }
+
+    public void onHearSound(View view) {
+        calibraionLabel.setText("Od teraz nie zmieniaj poziomu głośności!");
     }
 
 
@@ -112,13 +112,15 @@ public class CalibrationActivity extends AppCompatActivity {
                         Log.d(TAG, "Headset is unplugged");
                         Toast.makeText(CalibrationActivity.this, "Unplugged", Toast.LENGTH_SHORT).show();
                         buttonCalibration.setEnabled(false);
-                        buttonHear.setEnabled(false);
+                        buttonStart.setEnabled(false);
+                        buttonStop.setEnabled(false);
                         break;
                     case 1:
                         Log.d(TAG, "Headset is plugged");
                         Toast.makeText(CalibrationActivity.this, "Plugged", Toast.LENGTH_SHORT).show();
                         buttonCalibration.setEnabled(true);
-                        buttonHear.setEnabled(true);
+                        buttonStart.setEnabled(true);
+                        buttonStop.setEnabled(true);
                         break;
                     default:
                         Log.d(TAG, "I have no idea what the headset state is");

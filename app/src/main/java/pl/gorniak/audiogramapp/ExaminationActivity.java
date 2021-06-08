@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,11 +26,17 @@ public class ExaminationActivity extends AppCompatActivity {
     RadioButton rightbutton;
     RadioButton leftbutbutton;
 
+    float
     int frequency = 125;
+//    double gain = Math.pow(10,(10/20));
     float volume = 1;//0-1
-
+    int decibels = 10;//poczatkowa wartosc
+// 1, 0.3, 0.03, 0.003, 0.0003, 0,00003
     int i = 0;
-    Integer[] frequencies = { 125, 250, 500, 1000, 1500, 2000, 3000, 4000 };
+    int j = 0;
+    Integer[] frequencies = { 125, 250, 500, 1000, 1500, 2000, 3000, 4000, 6000, 8000, 10000};
+    float[] coeffs ={0.00003f, 0.0003f, 0.003f, 0.03f,0.3f,1f};
+    float gain = coeffs[j];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,7 @@ public class ExaminationActivity extends AppCompatActivity {
 
     private void updateText(){
         frequencyTextView.setText(String.valueOf(frequencies[i]));
-        volumeTextView.setText(String.valueOf(volume));
+        volumeTextView.setText(String.valueOf(decibels));
     }
     public void gotoGraph(View view) {
         Intent graphpage = new Intent(ExaminationActivity.this, GraphActivity.class);
@@ -62,12 +69,18 @@ public class ExaminationActivity extends AppCompatActivity {
 
     public void onAnswerYes(View view) {
         i++;
-        volume=10;
+        decibels=10;
         updateText();
     }
 
     public void onAnswerNo(View view) {
-        volume+=20;
+        decibels+=20;
+        j++;
+        if(decibels >=130){
+            i++;
+            Toast.makeText(this, "Max volume", Toast.LENGTH_SHORT).show();
+            decibels =10;
+        }
         updateText();
     }
 
@@ -79,8 +92,10 @@ public class ExaminationActivity extends AppCompatActivity {
         short sample[] = new short[numSamples];
         // tworzenie próbek
         frequency = frequencies[i];
+        gain = coeffs[j];
+
         for (int i = 0; i < numSamples; ++i) {
-            sample[i] = (short) (volume/100 * Math.sin(2 * Math.PI * i / (SAMPLE_RATE / frequency)) *
+            sample[i] = (short) (Math.pow(10,(20/10)) * Math.sin(2 * Math.PI * i / (SAMPLE_RATE / frequency)) *
                     Short.MAX_VALUE);
         }
         AudioTrack audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,

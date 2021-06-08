@@ -72,71 +72,79 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/startButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="52dp"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginBottom="92dp"
         android:background="@drawable/btn_shape2"
         android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:onClick="onCalibrationClick"
         android:paddingVertical="15dp"
         android:text="@string/start_calibration"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/card1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="onCalibrationClick"
+        app:layout_constraintTop_toBottomOf="@id/card1"
 
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/hearSound"
+        android:id="@+id/stopButton"
+        android:layout_width="127dp"
+        android:layout_height="52dp"
+        android:layout_marginHorizontal="50dp"
+        android:background="@drawable/btn_shape2"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:onClick="onStopClick"
+        android:paddingVertical="15dp"
+        android:text="@string/stop_calibration"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/calibrationButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/startButton"
+        app:layout_constraintTop_toBottomOf="@id/card1"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/calibrationButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/btn_shape2"
         android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:onClick="onHearSound"
         android:paddingVertical="15dp"
-        android:layout_marginTop="10dp"
         android:text="@string/hear_sound"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/startButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="onHearClick"
-
-        />
+        app:layout_constraintTop_toBottomOf="@id/startButton"
+        app:layout_constraintVertical_bias="0.02" />
 
     <TextView
-        android:id="@+id/leftsound"
+        android:id="@+id/calibration_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="LEFT"
+        android:layout_marginBottom="16dp"
+        android:text="Calibration in progress..."
+        android:textColor="@color/white"
+        android:background="@color/red"
         android:textSize="20sp"
-        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calibrationButton"
+        app:layout_constraintVertical_bias="1.0" />
 
-        app:layout_constraintTop_toBottomOf="@id/hearSound" />
-
-    <TextView
-        android:id="@+id/rightsound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="RIGHT"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.711"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@id/hearSound" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

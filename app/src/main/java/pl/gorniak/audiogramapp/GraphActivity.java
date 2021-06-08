@@ -33,24 +33,27 @@ public class GraphActivity extends AppCompatActivity  {
 
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(false);
-
+        //125, 250, 500, 1000, 1500, 2000, 3000, 4000
+        //10,30,50,70,90,110,130 dB --> dopuszczalne ubytki sluchu
         ArrayList<Entry> yValues1 = new ArrayList<>();
         ArrayList<Entry> yValues2 = new ArrayList<>();
         yValues1.add(new Entry(125, 60f));
-        yValues1.add(new Entry(300, 44f));
-        yValues1.add(new Entry(1000, 64f));
-        yValues1.add(new Entry(1500, 74f));
-        yValues1.add(new Entry(2000, 45f));
-        yValues1.add(new Entry(2500, 63f));
+        yValues1.add(new Entry(250, 44f));
+        yValues1.add(new Entry(500, 64f));
+        yValues1.add(new Entry(1000, 74f));
+        yValues1.add(new Entry(1500, 45f));
+        yValues1.add(new Entry(2000, 63f));
         yValues1.add(new Entry(3000, 82f));
+        yValues1.add(new Entry(4000, 82f));
 
         yValues2.add(new Entry(125, 60f));
-        yValues2.add(new Entry(300, 94f));
-        yValues2.add(new Entry(1000, 54f));
-        yValues2.add(new Entry(1500, 64f));
-        yValues2.add(new Entry(2000, 45f));
-        yValues2.add(new Entry(2500, 43f));
+        yValues2.add(new Entry(250, 94f));
+        yValues2.add(new Entry(500, 54f));
+        yValues2.add(new Entry(1000, 64f));
+        yValues2.add(new Entry(1500, 45f));
+        yValues2.add(new Entry(2000, 43f));
         yValues2.add(new Entry(3000, 72f));
+        yValues2.add(new Entry(4000, 72f));
 
 
         LineDataSet set1 = new LineDataSet(yValues1, "Lewe ucho");

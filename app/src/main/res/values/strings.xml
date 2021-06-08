@@ -8,6 +8,7 @@
     <string name="save">Zapisz</string>
     <string name="headphones_in">Podłącz słuchawki</string>
     <string name="start_calibration">Kalibruj</string>
+    <string name="stop_calibration">Stop</string>
     <string name="hear_sound">Słyszę dźwięk</string>
     <string name="leftear">Lewe ucho</string>
     <string name="rightear">Prawe ucho</string>
