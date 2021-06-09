@@ -16,27 +16,29 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ExaminationActivity extends AppCompatActivity {
 
 
-    private static final int SAMPLE_RATE = 48000 ;
+    private static final int SAMPLE_RATE = 100000 ;
     int duration = 1;
     TextView frequencyTextView;
     TextView volumeTextView;
     Button yesButton;
     Button noButton;
     Button playButton;
-    RadioButton rightbutton;
-    RadioButton leftbutbutton;
+    RadioButton rightRbutton;
+    RadioButton leftRbutton;
 
-    float
+    float scale_factor = 0.01f;
+    //współczynnik skali użyty w kalibracji
     int frequency = 125;
-//    double gain = Math.pow(10,(10/20));
-    float volume = 1;//0-1
-    int decibels = 10;//poczatkowa wartosc
-// 1, 0.3, 0.03, 0.003, 0.0003, 0,00003
+//    float volume = 1;//0-1
+    int decibels = 0;//poczatkowa wartosc
     int i = 0;
     int j = 0;
-    Integer[] frequencies = { 125, 250, 500, 1000, 1500, 2000, 3000, 4000, 6000, 8000, 10000};
-    float[] coeffs ={0.00003f, 0.0003f, 0.003f, 0.03f,0.3f,1f};
-    float gain = coeffs[j];
+    int leftEarFlag = 1, rightEarFlag=0;
+    Integer[] frequencies = { 125, 250, 500, 1000, 1500, 2000, 3000, 4000, 6000,};
+    // 0dB, 10dB, 20dB, 30dB, 40dB, 50dB, 60dB, 70dB, 80dB, 90dB, 100dB,110dB
+    float [] volume = {1,3.16f,10f,31.6f,100f,316.2f,1000f, 3162.2f, 10000f,31622.7f,100000f,316227.7f};
+    int[] leftEar = new int[9];
+    int[] rightEar = new int[9];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +50,12 @@ public class ExaminationActivity extends AppCompatActivity {
         yesButton = (Button)findViewById(R.id.yes);
         noButton = (Button)findViewById(R.id.no);
         playButton = (Button)findViewById(R.id.play);
-        rightbutton = (RadioButton) findViewById(R.id.rbuttonrigth);
-        leftbutbutton = (RadioButton)findViewById(R.id.rbuttonleft);
+        //radio button
+        rightRbutton = (RadioButton) findViewById(R.id.rbuttonrigth);
+        leftRbutton = (RadioButton)findViewById(R.id.rbuttonleft);
+        leftRbutton.setChecked(true);
+        rightRbutton.setChecked(false);
+        rightRbutton.setEnabled(false);
 
         updateText();
         yesButton.setEnabled(false);
@@ -61,25 +67,54 @@ public class ExaminationActivity extends AppCompatActivity {
         frequencyTextView.setText(String.valueOf(frequencies[i]));
         volumeTextView.setText(String.valueOf(decibels));
     }
-    public void gotoGraph(View view) {
-        Intent graphpage = new Intent(ExaminationActivity.this, GraphActivity.class);
-        startActivity(graphpage);
-    }
-
 
     public void onAnswerYes(View view) {
+        if(leftEarFlag == 1) {
+            leftEar[i] = j * 10;
+        }
+        if(leftEarFlag == 0) {
+            rightEar[i] = j * 10;
+        }
         i++;
-        decibels=10;
+        decibels=0;
+        j=0;
+        if(frequencies[i] >= 6000){
+            if(leftEarFlag == 0) {
+                Intent result = new Intent(getBaseContext(), ResultActivity.class);
+                result.putExtra("leftEar", leftEar);
+                result.putExtra("rightEar", rightEar);
+                startActivity(result);
+                finish();
+            }
+            Toast.makeText(this, "Max frequency", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Ear swap", Toast.LENGTH_LONG).show();
+            leftRbutton.setChecked(false);
+            leftRbutton.setEnabled(false);
+            rightRbutton.setEnabled(true);
+            rightRbutton.setChecked(true);
+            i=0;
+            j=0;
+            leftEarFlag=0;
+            rightEarFlag=1;
+        }
         updateText();
+        //parse do listy
     }
 
     public void onAnswerNo(View view) {
-        decibels+=20;
+        decibels+=10;
         j++;
-        if(decibels >=130){
+        if(decibels > 110){
+            if(leftEarFlag == 1) {
+                leftEar[i] = 110;
+            }
+            if(leftEarFlag == 0) {
+                rightEar[i] = 110;
+            }
             i++;
             Toast.makeText(this, "Max volume", Toast.LENGTH_SHORT).show();
-            decibels =10;
+            decibels =0;
+            j=0;
         }
         updateText();
     }
@@ -92,10 +127,10 @@ public class ExaminationActivity extends AppCompatActivity {
         short sample[] = new short[numSamples];
         // tworzenie próbek
         frequency = frequencies[i];
-        gain = coeffs[j];
+        float volumes = volume[j];
 
         for (int i = 0; i < numSamples; ++i) {
-            sample[i] = (short) (Math.pow(10,(20/10)) * Math.sin(2 * Math.PI * i / (SAMPLE_RATE / frequency)) *
+            sample[i] = (short) (volumes*scale_factor * Math.sin(2 * Math.PI * i / (SAMPLE_RATE / frequency)) *
                     Short.MAX_VALUE);
         }
         AudioTrack audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,
@@ -103,11 +138,12 @@ public class ExaminationActivity extends AppCompatActivity {
                 AudioFormat.ENCODING_PCM_16BIT, sample.length * 2,
                 AudioTrack.MODE_STATIC);
         audioTrack.write(sample, 0, sample.length);
-        audioTrack.setStereoVolume(1,0);
+        audioTrack.setStereoVolume(leftEarFlag,rightEarFlag);
         audioTrack.play();
         yesButton.setEnabled(true);
         noButton.setEnabled(true);
     }
+
 
 
 }
