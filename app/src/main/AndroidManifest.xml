@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AudiogramApp">
         <activity android:name=".ResultActivity"></activity>
-        <activity android:name=".GraphActivity" />
+        <activity android:name=".GraphActivity"
+            android:screenOrientation="landscape"
+            />
 
         <receiver
             android:name=".CalibrationActivity"
@@ -24,11 +26,18 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".AudiogramGraph" />
-        <activity android:name=".AboutProgramActivity" />
-        <activity android:name=".ExaminationActivity" />
-        <activity android:name=".CalibrationActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".AudiogramGraph"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AboutProgramActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ExaminationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".CalibrationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

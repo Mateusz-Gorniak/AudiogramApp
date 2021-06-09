@@ -26,13 +26,12 @@ public class ExaminationActivity extends AppCompatActivity {
     RadioButton rightRbutton;
     RadioButton leftRbutton;
 
-    float scale_factor = 0.01f;
     //współczynnik skali użyty w kalibracji
+    float scale_factor = 0.01f;
     int frequency = 125;
-//    float volume = 1;//0-1
     int decibels = 0;//poczatkowa wartosc
-    int i = 0;
-    int j = 0;
+    int i = 0;//index i
+    int j = 0;//index j
     int leftEarFlag = 1, rightEarFlag=0;
     Integer[] frequencies = { 125, 250, 500, 1000, 1500, 2000, 3000, 4000, 6000,};
     // 0dB, 10dB, 20dB, 30dB, 40dB, 50dB, 60dB, 70dB, 80dB, 90dB, 100dB,110dB
