@@ -111,16 +111,16 @@ public class CalibrationActivity extends AppCompatActivity {
                     case 0:
                         Log.d(TAG, "Headset is unplugged");
                         Toast.makeText(CalibrationActivity.this, "Unplugged", Toast.LENGTH_SHORT).show();
-                        buttonCalibration.setEnabled(false);
-                        buttonStart.setEnabled(false);
-                        buttonStop.setEnabled(false);
+//                        buttonCalibration.setEnabled(false);
+//                        buttonStart.setEnabled(false);
+//                        buttonStop.setEnabled(false);
                         break;
                     case 1:
                         Log.d(TAG, "Headset is plugged");
                         Toast.makeText(CalibrationActivity.this, "Plugged", Toast.LENGTH_SHORT).show();
-                        buttonCalibration.setEnabled(true);
-                        buttonStart.setEnabled(true);
-                        buttonStop.setEnabled(true);
+//                        buttonCalibration.setEnabled(true);
+//                        buttonStart.setEnabled(true);
+//                        buttonStop.setEnabled(true);
                         break;
                     default:
                         Log.d(TAG, "I have no idea what the headset state is");

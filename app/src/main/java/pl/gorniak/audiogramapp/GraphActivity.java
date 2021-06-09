@@ -76,5 +76,7 @@ public class GraphActivity extends AppCompatActivity  {
         iLineDataSets.add(set2);
         LineData data = new LineData(iLineDataSets);
         mChart.setData(data);
+        mChart.getAxisLeft().setInverted(true);
+        mChart.setTransitionName("test");
     }
 }

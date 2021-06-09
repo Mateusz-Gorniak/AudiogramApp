@@ -1,5 +1,7 @@
 package pl.gorniak.audiogramapp;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioFormat;
 import android.media.AudioManager;
@@ -11,12 +13,13 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ExaminationActivity extends AppCompatActivity {
 
 
-    private static final int SAMPLE_RATE = 100000 ;
+    private static final int SAMPLE_RATE = 100000;
     int duration = 1;
     TextView frequencyTextView;
     TextView volumeTextView;
@@ -25,6 +28,7 @@ public class ExaminationActivity extends AppCompatActivity {
     Button playButton;
     RadioButton rightRbutton;
     RadioButton leftRbutton;
+    Button resultButton;
 
     //współczynnik skali użyty w kalibracji
     float scale_factor = 0.01f;
@@ -38,6 +42,7 @@ public class ExaminationActivity extends AppCompatActivity {
     float [] volume = {1,3.16f,10f,31.6f,100f,316.2f,1000f, 3162.2f, 10000f,31622.7f,100000f,316227.7f};
     int[] leftEar = new int[9];
     int[] rightEar = new int[9];
+    Intent result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +60,13 @@ public class ExaminationActivity extends AppCompatActivity {
         leftRbutton.setChecked(true);
         rightRbutton.setChecked(false);
         rightRbutton.setEnabled(false);
+        //resultButton
+        resultButton = (Button) findViewById(R.id.hearSound);
 
         updateText();
         yesButton.setEnabled(false);
         noButton.setEnabled(false);
+        resultButton.setEnabled(false);
 
     }
 
@@ -79,14 +87,18 @@ public class ExaminationActivity extends AppCompatActivity {
         j=0;
         if(frequencies[i] >= 6000){
             if(leftEarFlag == 0) {
-                Intent result = new Intent(getBaseContext(), ResultActivity.class);
+                result = new Intent(getBaseContext(), GraphActivity.class);
                 result.putExtra("leftEar", leftEar);
                 result.putExtra("rightEar", rightEar);
-                startActivity(result);
-                finish();
+                noButton.setEnabled(false);
+                yesButton.setEnabled(false);
+                playButton.setEnabled(false);
+                resultButton.setEnabled(true);
+//                startActivity(result);
+
             }
             Toast.makeText(this, "Max frequency", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this,"Ear swap", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Ear swap", Toast.LENGTH_SHORT).show();
             leftRbutton.setChecked(false);
             leftRbutton.setEnabled(false);
             rightRbutton.setEnabled(true);
@@ -144,5 +156,48 @@ public class ExaminationActivity extends AppCompatActivity {
     }
 
 
+    public void showAlertDialogButtonClicked(View view) {
 
+        //Obliczenie ubytku słuchu
+        int hearLossLeft;
+        int hearLossRight;
+        int hearLoss;
+        //czestotliwosci z ktorych liczymy ubytek 500Hz 1000Hz 2000Hz
+        //leftEar[3], leftEar[4], leftEar[6]
+        //rightEar[3], rightEar[4], rightEar[6]
+
+        hearLossLeft = (leftEar[3]+leftEar[4]+leftEar[6])/3;
+        hearLossRight = (rightEar[3]+rightEar[4]+rightEar[6])/3;
+
+        if (hearLossLeft>hearLossRight){
+            hearLoss = hearLossRight;
+        }
+        else{
+            hearLoss = hearLossLeft;
+        }
+
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Wynik badania");
+        builder.setMessage("Twój ubytek słuchu wynosi: " + hearLoss + "dB");
+
+        // add a button
+        builder.setPositiveButton("Wykres Audiogram", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(result);
+                finish();
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+//    public void onResultClick(View view) {
+//
+//        startActivity(result);
+//        finish();
+//    }
 }
