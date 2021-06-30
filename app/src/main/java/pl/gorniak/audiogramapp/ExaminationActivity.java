@@ -31,7 +31,7 @@ public class ExaminationActivity extends AppCompatActivity {
     Button resultButton;
 
     //współczynnik skali użyty w kalibracji
-    float scale_factor = 0.01f;
+    float scale_factor = 0.03f;
     int frequency = 125;
     int decibels = 0;//poczatkowa wartosc
     int i = 0;//index i
