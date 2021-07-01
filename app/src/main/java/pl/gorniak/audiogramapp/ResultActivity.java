@@ -16,5 +16,6 @@ public class ResultActivity extends AppCompatActivity {
     public void onGetGraph(View view) {
         Intent graphpage = new Intent(this, GraphActivity.class);
         startActivity(graphpage);
+        //test workflow2
     }
 }
