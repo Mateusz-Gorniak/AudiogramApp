@@ -39,6 +39,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dBButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_shape2"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        tools:ignore="MissingConstraints"
+        android:text="Zapisz w bazie danych"
+        app:layout_constraintBottom_toTopOf="@+id/graphButton"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_shape2"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toTopOf="@+id/dBButton"
+        android:text="Podziel się wynikiem"
+        tools:ignore="MissingConstraints"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
