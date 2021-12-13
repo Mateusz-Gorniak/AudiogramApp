@@ -9,24 +9,23 @@
 
     <TextView
         android:id="@+id/calibration_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Wynik badania"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintVertical_bias="0.15"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/graphButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="420dp"
         android:background="@drawable/btn_shape2"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:onClick="onGetGraph"
@@ -34,11 +33,11 @@
         android:text="Wykres"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6"
+        app:layout_constraintTop_toTopOf="@+id/calibration_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/dBButton"
         android:layout_width="match_parent"
@@ -47,6 +46,7 @@
         android:foreground="?attr/selectableItemBackgroundBorderless"
         tools:ignore="MissingConstraints"
         android:text="Zapisz w bazie danych"
+        android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toTopOf="@+id/graphButton"
         android:textSize="20sp"
         android:textStyle="bold"

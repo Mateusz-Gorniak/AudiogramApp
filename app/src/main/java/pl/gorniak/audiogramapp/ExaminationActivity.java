@@ -97,8 +97,8 @@ public class ExaminationActivity extends AppCompatActivity {
 //                startActivity(result);
 
             }
-            Toast.makeText(this, "Max frequency", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this,"Ear swap", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Częstotliwość maksymalna", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Zmiana ucha", Toast.LENGTH_SHORT).show();
             leftRbutton.setChecked(false);
             leftRbutton.setEnabled(false);
             rightRbutton.setEnabled(true);
@@ -123,7 +123,7 @@ public class ExaminationActivity extends AppCompatActivity {
                 rightEar[i] = 110;
             }
             i++;
-            Toast.makeText(this, "Max volume", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Głośność maksymalna", Toast.LENGTH_SHORT).show();
             decibels =0;
             j=0;
         }

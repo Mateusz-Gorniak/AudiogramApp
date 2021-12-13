@@ -8,15 +8,13 @@
     tools:context=".GraphActivity">
 
 
-
     <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/linechart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="20dp"
-        android:background="@color/white"
-        android:id="@+id/linechart"
-        ></com.github.mikephil.charting.charts.LineChart>
+        android:background="@color/white"></com.github.mikephil.charting.charts.LineChart>
 
 
 </RelativeLayout>

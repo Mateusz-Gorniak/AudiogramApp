@@ -109,21 +109,21 @@ public class CalibrationActivity extends AppCompatActivity {
                 int state = intent.getIntExtra("state", -1);
                 switch (state) {
                     case 0:
-                        Log.d(TAG, "Headset is unplugged");
+                        Log.d(TAG, "Słuchawki są niepodąłączone");
                         Toast.makeText(CalibrationActivity.this, "Unplugged", Toast.LENGTH_SHORT).show();
 //                        buttonCalibration.setEnabled(false);
 //                        buttonStart.setEnabled(false);
 //                        buttonStop.setEnabled(false);
                         break;
                     case 1:
-                        Log.d(TAG, "Headset is plugged");
+                        Log.d(TAG, "Słuchawki są podłączone");
                         Toast.makeText(CalibrationActivity.this, "Plugged", Toast.LENGTH_SHORT).show();
 //                        buttonCalibration.setEnabled(true);
 //                        buttonStart.setEnabled(true);
 //                        buttonStop.setEnabled(true);
                         break;
                     default:
-                        Log.d(TAG, "I have no idea what the headset state is");
+                        Log.d(TAG, "Nie jesteśmy w stanie stwierdzić czy słuchawki są podłączone");
                 }
             }
         }

@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="556dp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-6dp">
+        tools:layout_editor_absoluteX="6dp">
 
         <ImageView
             android:id="@+id/book_ico_about_layout"
